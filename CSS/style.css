@@ -48,26 +48,109 @@ a {
 
 
 
-/* Main-menu css start  */
+ /*----------------------- Main-menu css start-----------------------  */
 
 
 
 #results {
+        margin: 20px 0px 70px 0px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+        justify-items: stretch;
+    
+}
+.searchBox {
+    margin: 20px;
+    padding: 20px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; 
+    justify-content: center;
+}
+#search {
+    display: flex;
+    align-self: center;
+    min-height: 25px;
+    border-radius: 10px;
+    width: 45%;
+}
+#search::placeholder {
+    padding-left: 10px;
 }
 
 
-
-.card {
-    /*   */
-    margin: 5px;
-    border: 1px solid black;
-    flex-basis: 20%; 
-}
 
 .images {
-    width: 240px;
-    height: 200px;
+    width: 100%;
+    border-radius: 30px;
 }
+
+/* .images:hover {
+    scale: 1.03;
+} */
+
+.product-description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    align-items: center;
+}
+
+.productName {
+    font-size: 2rem;
+}
+.productPrice {
+    font-size: 1.3rem;
+}
+
+.card-field {
+    margin-top: 10px;
+    width: 30%;
+}
+
+.card-input-and-Button {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.card-input-and-Button > :last-child {
+    cursor: pointer;
+    background-color: white;
+   
+}
+
+ /*----------------------- Main-menu css end-----------------------  */
+
+
+ /*----------------------- CART-PAGE-CSS-START-----------------------  */
+ .empty-cart {
+    margin: 30px 0px 0px 0px;
+ }
+
+ .empty-cart > :only-child {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+ }
+
+
+ /* table */
+
+ table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+ /* table */

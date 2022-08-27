@@ -28,7 +28,7 @@ const data = [
         "price": 7.4
     },
     {
-        "image": "parcheto.bg/wp-content/uploads/2022/04/diuner-box-11-of-50.jpg",
+        "image": "https://www.parcheto.bg/wp-content/uploads/2022/04/diuner-box-11-of-50.jpg",
         "name": "Дюнер box",
         "weight": 400,
         "category": "Дюнери",

@@ -13,6 +13,9 @@ class MainManager {
 
 
 
+
+
+
     filter(text) {
 
         let filtered = []

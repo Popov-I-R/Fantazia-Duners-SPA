@@ -15,7 +15,6 @@ for (let i = 0; i < data.length; i++) {
         obj.weight,
         obj.category,
         obj.price,
-        obj.quantity
     )
     manager.add(duner) 
 }
@@ -36,7 +35,8 @@ let onHashChange = function () {
                 homePage.style.display= "none";
                 cartPage.style.display= "block";
                 deliveryPage.style.display= "none";
-            //    printCart(cart, likedPage)
+                printCartPage(user.cart, cartPage)
+        
             break;
         case "deliveryPage":
                 homePage.style.display= "none";
@@ -55,10 +55,12 @@ let onHashChange = function () {
 window.addEventListener("hashchange", onHashChange)
 window.addEventListener("load", onHashChange)
 
+
+// HOMEPAGE 
 function printHomePage (allDuners,container) {
     container.innerHTML = ""
-    for (let i = 0; i < allDuners.length; i++) { // За да направи едно и също за всеки обект 
-        let duner = allDuners[i] //---за да не пиша всеки път matches[i] по-надолу
+    for (let i = 0; i < allDuners.length; i++) { 
+        let duner = allDuners[i] 
          //Създай див
          let div = document.createElement("div");
          div.classList.add("card")
@@ -70,24 +72,34 @@ function printHomePage (allDuners,container) {
          img.setAttribute("id", "productsHome")
 
          //създай ИМЕ
-         let h3name = document.createElement("h3");
-         h3name.innerHTML = duner.name
-         // създай weight 
-         let h3weight = document.createElement("h3");
-         h3weight.innerHTML = `Тегло: ${duner.weight}`
-         // create category
-         let h3category = document.createElement("h3");
-         h3category.innerHTML = ` Категория: ${duner.category}` 
-         //create price  
-         let h5price = document.createElement("h5");
-         h5price.innerHTML = ` Цена: ${duner.price}`         
+        let productDescription = document.createElement("div")
+        productDescription.classList.add("product-description")
+
+         let productName = document.createElement("h3");
+         productName.innerHTML = duner.name
+         productName.classList.add("productName")
+         // за тегло
+         let productWeight = document.createElement("h3");
+         productWeight.innerHTML = `Тегло: ${duner.weight} гр.`
+         productWeight.classList.add("productWeight")
+         // категория 
+         let productCategory = document.createElement("h3");
+         productCategory.innerHTML = ` Категория: ${duner.category}` 
+         productCategory.classList.add("productCategory")
+        // Цена 
+         let productPrice = document.createElement("h5");
+         productPrice.innerHTML = ` Цена: ${duner.price.toFixed(2)}`
+         productPrice.classList.add("productPrice")      
+         productDescription.append(productName,productWeight,productCategory,productPrice)
 
 
-         //create input for num 
-        //  let quantityInput = document.createElement("input")
+        let cardInputAndButton = document.createElement("div")
+        cardInputAndButton.classList.add("card-input-and-Button")
+                // input меню за вкарване на продукти в брой 
+         let quantityInput = document.createElement("input")
+         quantityInput.classList.add("card-field")
         //  quantityInput.setAttribute("id", "quantityInput")
-        //  quantityInput.setAttribute("type", "number")
-        //  quantityInput.value = match.quantity
+        quantityInput.setAttribute("type", "number")
         
 
         //  quantityInput.addEventListener("input",updateValue)
@@ -100,32 +112,89 @@ function printHomePage (allDuners,container) {
         // }
 
         //За бутона add to cart 
-         let addToCart = document.createElement("button")
-            addToCart.innerText = "Add to cart "
-            addToCart.addEventListener("click", function () {
-     
-               user.addToCart(duner) 
-               onHashChange()
-            })
-            addToCart.addEventListener("click", updateTwo)
+         let addToCartButton = document.createElement("button");
+         addToCartButton.classList.add("addToCartButton");
+         addToCartButton.classList.add("card-field");
+         addToCartButton.innerText = "Add to cart ";
 
-            function updateTwo() {
-                user.addToCart(match) 
-                onHashChange()
-                match.quantity = match.quantity + 1
-                console.log(match.quantity);
-            }
-         
+        addToCartButton.addEventListener("click", function () {
+          user.addToCart(duner);
+              onHashChange();
+        });
+            // addToCartButton.addEventListener("click", updateTwo);
 
+            // function updateTwo() {
+            //   user.addToCart(match);
+            //   onHashChange();
+            //   match.quantity = match.quantity + 1;
+            //   console.log(match.quantity);
+            // }
 
+            cardInputAndButton.append(quantityInput, addToCartButton);
 
-         div.append(img,h3name,h3weight,h3category,h5price,addToCart)
-         container.append(div) 
-         
-
-        
+            div.append(img, productDescription, cardInputAndButton);
+            container.append(div);   
     }
 
 }
 
+
 printHomePage(manager.allDuners,homeResults)
+
+// CART PAGE 
+
+
+let addedProducts = document.getElementById("added-products")
+
+function printCartPage(producs,container) {
+    container.innerHTML = ""
+    
+    let table = document.createElement("table");
+    let tableRow = document.createElement("tr");
+
+    let thProductName = document.createElement("th");
+    thProductName.innerText = `Име на продукт`;
+
+    let thProductPrice = document.createElement("th");
+    thProductPrice.innerText = `Цена`;
+
+    let thProductWeight = document.createElement("th");
+    thProductWeight.innerText = `Количество`;
+
+    let thProductFinalPrice = document.createElement("th");
+    thProductFinalPrice.innerText = `Крайна цена`;
+
+    tableRow.append(thProductName,thProductPrice,thProductWeight,thProductFinalPrice)
+    table.appendChild(tableRow)
+    container.append(table)
+
+    for (let i = 0; i < user.cart.length; i++) {
+        
+        let product = user.cart[i]
+        
+
+        let tr = document.createElement("tr")        
+
+        let productName = document.createElement("td")
+        productName.innerText = product.name
+
+        let productPrice = document.createElement("td")
+        productPrice.innerText = `Цена : ${product.price}`
+
+        let quantity = document.createElement("td")
+        let quantityInput = document.createElement("input")
+        quantityInput.setAttribute("type", "number")
+        quantityInput.value = product.quantity
+        quantity.appendChild(quantityInput)
+
+        let productPriceTotal = document.createElement("td")
+        productPriceTotal.innerText = `Тотал: ${product.price * product.quantity}`
+
+        tr.append(productName,productPrice,quantity,productPriceTotal)
+        table.append(tr)
+        
+        
+    }
+   
+
+}
