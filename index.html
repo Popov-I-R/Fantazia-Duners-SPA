@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantazia</title>
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+
+</head>
+<body>
+    <header>
+        <nav class="nav-wrapper">
+            <div class="logo-box">
+                <a href="index.html"><img id="logo" src="./img/logo.jpeg" alt="logo-img"></a>
+            </div>
+            <div class="nav-buttons">
+                <div>
+                    <a href="#homePage">Начална страница</a>
+                </div>   
+                <div>
+                    <p id="countProducts"></p>
+                    <a href="#cartPage">
+                        <img src="/img/cart.jpeg" alt="cart-img" id="cart-img">
+                    </a>
+                    
+                </div>
+            </div>
+
+                
+                
+        
+        </nav>
+   </header>
+    <main>
+        <div class="wrapper">
+            <div id="homePage">
+                <div class="searchBox">
+                    <input type="text" name="" id="search" placeholder="Search By Name">
+                </div>
+
+                <div id="filter">  
+                </div>
+
+                <div id="results">
+                </div>
+            </div>
+            <div id="cartPage">
+                <div id="cart-products">
+    
+                </div> 
+            </div>
+            <div id="deliveryPage"></div>
+        </div>
+
+    </main>
+
+    <script src="./model/Duner.js"></script>
+    <script src="./model/MainManager.js"></script>
+    <script src="./model/User.js"></script>
+    <script src="./data/data.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

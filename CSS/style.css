@@ -1,0 +1,73 @@
+/* Navigation css start  */
+
+header {
+    background-color: black;
+}
+#logo {
+    width: 70px;
+}
+.nav-buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 50px;
+    align-items: center;
+    
+}
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.nav-wrapper {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+#cart-img {
+    width: 50px;
+}
+
+/* Navigation css end  */
+
+.wrapper {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: auto;
+}
+
+
+
+/* Main-menu css start  */
+
+
+
+#results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+
+
+
+.card {
+    /*   */
+    margin: 5px;
+    border: 1px solid black;
+    flex-basis: 20%; 
+}
+
+.images {
+    width: 240px;
+    height: 200px;
+}
