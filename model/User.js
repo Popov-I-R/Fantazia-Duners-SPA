@@ -5,31 +5,45 @@ class User {
         this.phone = ""
         this.address = ""
 
+        this.cartCounter = 0
         this.cart = [] 
         this.purchased = [] // Евентуално ще ползвам това за вече направените поръчки
       
 
     }
 
-    addToCart(product) { 
-        if (product.quantity == undefined) {
-            product.quantity = 1
+
+
+        addToCart(product, quantity) { 
+        let getIndex = this.cart.indexOf(product)
+
+        if (getIndex === -1) {
+           product.quantity = +quantity
             if (this.cart.indexOf(product) === -1) {
                 this.cart.push(product) 
             }
         } else {
-            product.quantity++
+            product.quantity+= +quantity
         }
-
-
-
-        // product.quantity = 1
-        // // Някъде ми трябва променлива за количество, а долу трябва да има if producta go nqma - dobavi go v cart i uvelichi kolichestvoto - ako go ima i pak e natisnato - samo uvelichi kolichestvoto 
-        // if (this.cart.indexOf(product) === -1) {
-        //     this.cart.push(product) 
-        // } else {
-        //     this.quantity = this.quantity + 1
-        // }
     }
+
+
+
+    // addToCart(product) { 
+    //     if (product.quantity == undefined) {
+    //         product.quantity = 1
+    //         if (this.cart.indexOf(product) === -1) {
+    //             this.cart.push(product) 
+    //         }
+    //     } else {
+    //         product.quantity++
+    //     }
+    // }
+    removeFromCart(product) {
+        let getIndex = this.cart.indexOf(product)
+        this.cart.splice(getIndex,1)
+    }
+
+
 
 }

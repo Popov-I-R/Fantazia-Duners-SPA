@@ -35,6 +35,29 @@ a {
     width: 50px;
 }
 
+.cart-holder {
+    position: relative;
+}
+
+.test-hidden {
+    display: none;
+}
+.test-showed {
+    display: block;
+}
+
+#countProducts {
+    
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    width: 15px;
+    padding: 3px 1px 3px 5px;
+    right: 37px;
+    top: 1px;
+}
+
 /* Navigation css end  */
 
 .wrapper {

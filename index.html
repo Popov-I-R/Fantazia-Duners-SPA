@@ -19,8 +19,8 @@
                 <div>
                     <a href="#homePage">Начална страница</a>
                 </div>   
-                <div>
-                    <p id="countProducts"></p>
+                <div class="cart-holder">
+                    <span class="test-hidden" id="countProducts"></span>
                     <a href="#cartPage">
                         <img src="/img/cart.jpeg" alt="cart-img" id="cart-img">
                     </a>
@@ -47,11 +47,28 @@
                 </div>
             </div>
             <div id="cartPage">
-                <!-- <div class="empty-cart">
+                <div class="empty-cart">
                     <h1 id="">Нямате добавени продукти в количката</h1>
-                </div> -->
+                </div>
+                <div class="order-history">
+                    <h2>История на поръчките </h2>
+                    <table>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Адрес</th>
+                            <th>Продукти</th>
+                            <th>Крайна цена</th>
+                        </tr>
+                        <tr>
+                            <td>date</td>
+                            <td>addres</td>
+                            <td>product1,product2,product3,product4</td>
+                            <td>Total price</td>
+                        </tr>
+                    </table>
+                </div>
 
-                
+
             </div>
             <div id="deliveryPage"></div>
         </div>
