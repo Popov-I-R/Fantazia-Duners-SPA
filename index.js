@@ -175,7 +175,8 @@ printHomePage(manager.allDuners,homeResults)
 
 
 let addedProducts = document.getElementById("added-products")
-function printOrderHistory(container) {
+
+function printOrderHistory(orders, container) {
     let orderHistory = document.createElement("div")
     orderHistory.classList.add("order-history")
 
@@ -201,6 +202,41 @@ function printOrderHistory(container) {
     tableRow.append(thDate,thAddress,thProducts,thProductsFinalPrice)
     table.appendChild(tableRow)
     container.append(orderHistory,table)
+
+
+    if (orders.length > 0) {
+
+        for (let i = 0; i < orders.length; i++) {
+            let order = orders[i]
+
+
+            let tableRow = document.createElement("tr");
+    
+            let dateContainer = document.createElement("td");
+            dateContainer.innerText = order.date
+
+            let addressContainer = document.createElement("td")
+            addressContainer.innerText = order.address
+
+            let productsContainer = document.createElement("td")
+            productsContainer.innerText = `${order.productsNameAndCount}`
+
+            let totalPriceContainer = document.createElement("td")
+            totalPriceContainer.innerText = order.totalPrice
+
+            tableRow.append(dateContainer,addressContainer,productsContainer,totalPriceContainer)
+            table.appendChild(tableRow)
+        }
+    }
+
+
+
+
+
+
+
+
+
     }
 function printCartPage(producs,container) {
 
@@ -224,13 +260,9 @@ function printCartPage(producs,container) {
 
 
 
-        printOrderHistory(container)
+        printOrderHistory(user.orders,container)
     } else {
         container.innerHTML = ""
-    
-       
-
-    
         let table = document.createElement("table");
         let tableRow = document.createElement("tr");
     
@@ -255,7 +287,6 @@ function printCartPage(producs,container) {
 
         let sum = 0
         
-
         for (let i = 0; i < user.cart.length; i++) {
             
     
@@ -277,10 +308,7 @@ function printCartPage(producs,container) {
             quantityInput.value = product.quantity
             quantity.appendChild(quantityInput)
 
-            // totalProducts+= Number(quantityInput)
-            
-            
-            
+             
     
             let productPriceTotal = document.createElement("td")
             let productTotal = Number(product.price * product.quantity)
@@ -322,8 +350,8 @@ function printCartPage(producs,container) {
         }
         
         printTotalPriceAndSubmitButton()
-        
-        printOrderHistory(container)
+
+        printOrderHistory(user.orders,container)
 
         
         function printTotalPriceAndSubmitButton(){
@@ -361,48 +389,29 @@ function printCartPage(producs,container) {
         }
 
 
-
-
-
-
-
-
-        /* 
-        div button and final price 
-            div final price 
-            div button 
-            
-
-
-        */
     }
 }
 
 
 
 
+let form = document.getElementById("form-delivery")
+form.addEventListener("submit", function(e) {
+    e.preventDefault()
 
-let submitOrderButton = document.getElementById("submit-order")
-
-
-//Функция да прави всяка поръчка в обект и да налива в масив 
-submitOrderButton.addEventListener("click",function(){
-    // Обиколи количка и от цялото съдържание създай един обект и го сложи във user.purchased 
-
-
-    
     let date = new Date().toLocaleDateString()
-    let name = user.name
-    let phone = user.phone
-    let adress = user.address
+    let name = e.name;
+    let phone = e.phone;
+    let address = document.getElementById("address").value
     let productsNameAndCount = []
-    
     let totalOrderPrice = 0
     
     user.cart.forEach(e => totalOrderPrice += e.totalPrice)
     user.cart.forEach(e => productsNameAndCount.push(`${e.name} - ${e.quantity} бр.`))
 
-    user.makeOrder(date,name,phone,adress,productsNameAndCount,totalOrderPrice)
+    user.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice)
     console.log(user.orders);
 
+    user.cart = []
 })
+

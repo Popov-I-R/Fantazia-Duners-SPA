@@ -60,20 +60,19 @@
             <div id="deliveryPage">
                 <h2>Финализиране на поръчка </h2>
                 <form action="" id="form-delivery">
-                    <input type="text" name="" id="name" required>
-                    <input type="number" name="" id="phone" required>
-                    <textarea form="form-delivery" rows="4" cols="50" required></textarea>
-                    
+                    <input type="text" name="name" id="name" placeholder="Име" required>
+                    <input type="number" name="phone" id="phone" placeholder="Телефон за връзка" required>
+                    <textarea form="form-delivery" name="address" id="address" placeholder="Адрес" required></textarea>
+                    <button type="submit" id="submit-order">submit</button>
                 </form>
-                <button type="submit" id="submit-order">submit</button>
                 
+
             </div>
         </div>
 
     </main>
 
     <script src="./model/Duner.js"></script>
-    <script src="./Orders.js"></script>
     <script src="./model/MainManager.js"></script>
     <script src="./model/User.js"></script>
     <script src="./data/data.js"></script>

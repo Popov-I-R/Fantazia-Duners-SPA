@@ -31,15 +31,15 @@ class User {
         this.cart.splice(getIndex,1)
     }
 
-    makeOrder(date, name,phone,adress, productsNameAndCount,totalPrice){
+    makeOrder(date, name,phone,address, productsNameAndCount,totalPrice){
         let order = {}
         order.date = date;
         order.name = name;
         order.phone = phone;
-        order.adress = adress;
+        order.address = address;
         order.productsNameAndCount = productsNameAndCount;
         order.totalPrice = totalPrice;
-        this.orders.push(order);
+        this.orders.unshift(order);
         
     }
 
