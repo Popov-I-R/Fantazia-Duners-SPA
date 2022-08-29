@@ -7,20 +7,31 @@ let counterHeader = document.getElementById('countProducts')
 
 
 let emptyCard = document.getElementsByClassName("empty-cart")
-
+let totalProducts = 0
 
 function showCounter() {
-    counterHeader.innerHTML = user.cart.length
     onHashChange()
-    counterHeader.classList.remove("test-hidden")
-    counterHeader.classList.add("test-showed")
+    let products = totalProducts
+    user.cart.forEach(e => products+= e.quantity)
+    counterHeader.innerHTML = products
+    if (products == 0) {
+        counterHeader.classList.remove("test-showed")
+        counterHeader.classList.add("test-hidden")
+        onHashChange()
+    } else {
+        counterHeader.innerHTML = products
+    
+        counterHeader.classList.remove("test-hidden")
+        counterHeader.classList.add("test-showed")
+        onHashChange()
+    }
+
 
 }
 
 
 
 let user = new User();
-
 let manager = new MainManager() 
 
 for (let i = 0; i < data.length; i++) {
@@ -54,13 +65,8 @@ let onHashChange = function () {
                 if (user.cart.length > 0) {
                     printCartPage(user.cart, cartPage)
           } else {
-             
             printCartPage(user.cart, cartPage)
-            
-            
           }
-                // printCartPage(user.cart, cartPage)
-        
             break;
         case "deliveryPage":
                 homePage.style.display= "none";
@@ -163,24 +169,45 @@ function printHomePage (allDuners,container) {
     }
 
 }
-
-
 printHomePage(manager.allDuners,homeResults)
 
 // CART PAGE 
 
 
 let addedProducts = document.getElementById("added-products")
+function printOrderHistory(container) {
+    let orderHistory = document.createElement("div")
+    orderHistory.classList.add("order-history")
 
+    let orderHistoryTitle = document.createElement("h1")
+    orderHistoryTitle.innerText = "История на поръчките"
+    orderHistory.appendChild(orderHistoryTitle)
 
+    let table = document.createElement("table");
+    let tableRow = document.createElement("tr");
 
+    let thDate = document.createElement("th");
+    thDate.innerText = `Дата`;
 
+    let thAddress = document.createElement("th");
+    thAddress.innerText = `Адрес`;
 
+    let thProducts = document.createElement("th");
+    thProducts.innerText = `Продукти`;
+
+    let thProductsFinalPrice = document.createElement("th");
+    thProductsFinalPrice.innerText = `Крайна цена`;
+
+    tableRow.append(thDate,thAddress,thProducts,thProductsFinalPrice)
+    table.appendChild(tableRow)
+    container.append(orderHistory,table)
+    }
 function printCartPage(producs,container) {
 
     if (user.cart.length < 1) {
-        container. innerHTML = ""
+        totalProducts = 0
         
+        container. innerHTML = ""
         
         let emptyCart = document.createElement("div")
         emptyCart.classList.add("empty-cart")
@@ -191,26 +218,13 @@ function printCartPage(producs,container) {
 
 
 
+         // tezi neshta shte gi vkaram vuv funkciq sledvashtite 
+
+        container.append(emptyCart)
 
 
 
-        let orderHistory = document.createElement("div")
-        orderHistory.classList.add("order-history")
-
-        let orderHistoryTitle = document.createElement("h1")
-        orderHistoryTitle.innerText = "История на поръчките"
-        orderHistory.appendChild(orderHistoryTitle)
-
-
-        //table trqbva da nasledi 
-        // order history trqbva da nasledi title i table 
-
-
-
-
-        container.append(emptyCart,orderHistory)
-
-
+        printOrderHistory(container)
     } else {
         container.innerHTML = ""
     
@@ -240,6 +254,7 @@ function printCartPage(producs,container) {
         container.append(table)
 
         let sum = 0
+        
 
         for (let i = 0; i < user.cart.length; i++) {
             
@@ -261,62 +276,133 @@ function printCartPage(producs,container) {
             quantityInput.setAttribute("min", "1")
             quantityInput.value = product.quantity
             quantity.appendChild(quantityInput)
+
+            // totalProducts+= Number(quantityInput)
+            
+            
             
     
             let productPriceTotal = document.createElement("td")
             let productTotal = Number(product.price * product.quantity)
+            product.totalPrice = productTotal
             productPriceTotal.innerText = `${productTotal.toFixed(2)} лв.`
             
             sum+= productTotal
     
+            let deleteContainer = document.createElement("td")
             let deleteProductButton = document.createElement("button")
             deleteProductButton.classList.add("deleteProductButton")
             deleteProductButton.innerText = `Премахни`
+            deleteContainer.appendChild(deleteProductButton)
     
     
-            tr.append(productName,productPrice,quantity,productPriceTotal,deleteProductButton)
+            tr.append(productName,productPrice,quantity,productPriceTotal,deleteContainer)
             table.append(tr)
             
            
             
     
             quantityInput.addEventListener("input", function(event){
+                
                 product.quantity = +event.target.value
                 productPriceTotal.innerText = `${Number(event.target.value * product.price).toFixed(2)} лв.`
                 
             })
     
             deleteProductButton.addEventListener("click",function () {
+                
                 user.removeFromCart(product)
                 onHashChange()
+                showCounter()
             })
 
             
             
            
         }
-
-        console.log(sum);
-
-        let totalPriceContainer = document.createElement("div")
-        let totalPrice = document.createElement("h2")
-        totalPrice.innerText = sum
-        totalPriceContainer.appendChild(totalPrice)
-        container.appendChild(totalPriceContainer)
-
-        table.addEventListener("input", function(){
-            totalPrice.innerText = sum 
-            onHashChange()
-        })
+        
+        printTotalPriceAndSubmitButton()
+        
+        printOrderHistory(container)
 
         
+        function printTotalPriceAndSubmitButton(){
+            let totalPriceAndSubmit = document.createElement("div")
+            totalPriceAndSubmit.classList.add("total-and-submit-container")
+        
+            let totalPriceContainer = document.createElement("div")
+            let totalPrice = document.createElement("h2")
+            totalPrice.innerText = `Крайна цена: ${sum}`
+            totalPriceContainer.appendChild(totalPrice)
+        
+        
+        
+            let submitButtonContainer = document.createElement("div")
+        
+            let linkSubmit = document.createElement("a")
+            linkSubmit.setAttribute("href",`#deliveryPage`)
+            
+        
+            let submitButton = document.createElement("button")
+            submitButton.setAttribute("type","submit")
+            submitButton.innerText = `Направи поръчка`
+           linkSubmit.append(submitButton)
+            submitButtonContainer.appendChild(linkSubmit)
+        
+            totalPriceAndSubmit.append(totalPriceContainer,submitButtonContainer)
+        
+            container.appendChild(totalPriceAndSubmit)
+        
+            table.addEventListener("input", function(){
+                showCounter()
+                totalPrice.innerText = sum 
+                onHashChange()
+            })
+        }
+
+
+
+
+
+
+
+
+        /* 
+        div button and final price 
+            div final price 
+            div button 
+            
+
+
+        */
     }
-
-
-    
-
 }
 
 
 
 
+
+let submitOrderButton = document.getElementById("submit-order")
+
+
+//Функция да прави всяка поръчка в обект и да налива в масив 
+submitOrderButton.addEventListener("click",function(){
+    // Обиколи количка и от цялото съдържание създай един обект и го сложи във user.purchased 
+
+
+    
+    let date = new Date().toLocaleDateString()
+    let name = user.name
+    let phone = user.phone
+    let adress = user.address
+    let productsNameAndCount = []
+    
+    let totalOrderPrice = 0
+    
+    user.cart.forEach(e => totalOrderPrice += e.totalPrice)
+    user.cart.forEach(e => productsNameAndCount.push(`${e.name} - ${e.quantity} бр.`))
+
+    user.makeOrder(date,name,phone,adress,productsNameAndCount,totalOrderPrice)
+    console.log(user.orders);
+
+})

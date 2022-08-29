@@ -52,30 +52,28 @@
                 </div>
                 <div class="order-history">
                     <h2>История на поръчките </h2>
-                    <table>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Адрес</th>
-                            <th>Продукти</th>
-                            <th>Крайна цена</th>
-                        </tr>
-                        <tr>
-                            <td>date</td>
-                            <td>addres</td>
-                            <td>product1,product2,product3,product4</td>
-                            <td>Total price</td>
-                        </tr>
-                    </table>
+
                 </div>
 
 
             </div>
-            <div id="deliveryPage"></div>
+            <div id="deliveryPage">
+                <h2>Финализиране на поръчка </h2>
+                <form action="" id="form-delivery">
+                    <input type="text" name="" id="name" required>
+                    <input type="number" name="" id="phone" required>
+                    <textarea form="form-delivery" rows="4" cols="50" required></textarea>
+                    
+                </form>
+                <button type="submit" id="submit-order">submit</button>
+                
+            </div>
         </div>
 
     </main>
 
     <script src="./model/Duner.js"></script>
+    <script src="./Orders.js"></script>
     <script src="./model/MainManager.js"></script>
     <script src="./model/User.js"></script>
     <script src="./data/data.js"></script>

@@ -1,13 +1,12 @@
 class User {
 
     constructor() {
-        this.name = ""
-        this.phone = ""
-        this.address = ""
+        this.name = "Dakata"
+        this.phone = "0895 269 760"
+        this.address = "Красна Поляна 2"
 
-        this.cartCounter = 0
         this.cart = [] 
-        this.purchased = [] // Евентуално ще ползвам това за вече направените поръчки
+        this.orders = [] // Евентуално ще ползвам това за вече направените поръчки
       
 
     }
@@ -27,23 +26,21 @@ class User {
         }
     }
 
-
-
-    // addToCart(product) { 
-    //     if (product.quantity == undefined) {
-    //         product.quantity = 1
-    //         if (this.cart.indexOf(product) === -1) {
-    //             this.cart.push(product) 
-    //         }
-    //     } else {
-    //         product.quantity++
-    //     }
-    // }
     removeFromCart(product) {
         let getIndex = this.cart.indexOf(product)
         this.cart.splice(getIndex,1)
     }
 
-
+    makeOrder(date, name,phone,adress, productsNameAndCount,totalPrice){
+        let order = {}
+        order.date = date;
+        order.name = name;
+        order.phone = phone;
+        order.adress = adress;
+        order.productsNameAndCount = productsNameAndCount;
+        order.totalPrice = totalPrice;
+        this.orders.push(order);
+        
+    }
 
 }

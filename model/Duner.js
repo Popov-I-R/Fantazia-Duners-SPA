@@ -8,4 +8,5 @@ class Duner {
         this.price = price;
         
     }
+    
 }
