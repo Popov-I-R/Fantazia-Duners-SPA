@@ -1,2 +1,5 @@
 # Fantazia-Duners
- Create online fantazia-duners shop
+ Create SPA of Fantazia-Duners-online.
+
+Used technologies:
+HTML,CSS and pure JS
