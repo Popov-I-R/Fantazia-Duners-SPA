@@ -1,0 +1,33 @@
+ #deliveryPage > :first-child {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    font-size: 1.5rem;
+ }
+
+ #form-delivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ #name , #phone, #address {
+    min-width: 40%;
+    max-width: 40%;
+    margin: 20px;
+    padding: 10px;
+ }
+
+ #submit-order {
+    width: 42%;
+    padding: 10px;
+ }
+
+ #address {
+    max-height: 100px;
+    min-height: 50px;
+ }
+
+ .error {
+    background-color: red;
+ }

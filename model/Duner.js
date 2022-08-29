@@ -6,7 +6,5 @@ class Duner {
         this.weight = weight;
         this.category = category;
         this.price = price;
-        
     }
-    
 }

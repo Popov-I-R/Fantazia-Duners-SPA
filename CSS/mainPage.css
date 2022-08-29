@@ -1,0 +1,92 @@
+#results {
+    margin: 20px 0px 70px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    gap: 50px; 
+}
+
+.searchBox {
+margin: 50px  0px 0px 0px;
+}
+
+#search {
+width: 130px;
+box-sizing: border-box;
+border: 1px solid #842287;
+border-radius: 4px;
+font-size: 16px;
+background-color: white;
+padding: 12px 11px 12px 11px;
+transition: width 0.4s ease-in-out;
+}
+
+#search:hover , #search:focus {
+width: 100%;
+border: 1px solid #842287;
+outline: none;
+}
+
+.images {
+width: 100%;
+border-radius: 30px;
+}
+
+.product-description {
+display: flex;
+flex-direction: column;
+gap: 8px;
+align-items: center;
+}
+
+.card-field {
+border-radius: 10px;
+padding: 5px;
+}
+
+.product-description > :first-child {
+
+margin-top: 18px;
+font-size: 2rem;
+}
+
+.product-description > :last-child {
+font-size: 1.5rem;
+color: red;
+}
+
+.card-field {
+margin-top: 20px;
+width: 30%;
+}
+
+.card-input-and-Button {
+display: flex;
+justify-content: space-evenly;
+}
+
+.card-input-and-Button > :last-child {
+outline-color: white;
+background-color: white;
+}
+
+.card-input-and-Button > :last-child:hover {
+cursor: pointer;
+transition: background-color 0.4s;
+background-color:  #a5df94;
+}
+
+.card-input-and-Button > :last-child:active {
+background-color: #842287;
+}
+
+.card {
+    padding-bottom: 20px;
+}
+.card:hover {
+    transition: background-color 0.4s;
+    transition: border-radius 0.5s;
+    background-color: #fd93001c;
+    border-radius: 65px;
+
+}
+

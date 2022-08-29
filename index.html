@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantazia</title>
     <link rel="stylesheet" href="./CSS/reset.css">
-    <link rel="stylesheet" href="./CSS/style.css">
-
+    <link rel="stylesheet" href="./CSS/header.css">
+    <link rel="stylesheet" href="./CSS/mainPage.css">
+    <link rel="stylesheet" href="./CSS/cartPage.css">
+    <link rel="stylesheet" href="./CSS/deliveryPage.css">
+    <link rel="stylesheet" href="./CSS/orderCompletePage.css">
+    <title>Дюнери Фантазия</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo.jpeg">
 </head>
 <body>
     <header>
@@ -17,32 +22,25 @@
             </div>
             <div class="nav-buttons">
                 <div>
-                    <a href="#homePage">Начална страница</a>
-                </div>   
+                    <a href="#homePage">Меню</a>
+                </div>
                 <div class="cart-holder">
                     <span class="test-hidden" id="countProducts"></span>
                     <a href="#cartPage">
-                        <img src="/img/cart.jpeg" alt="cart-img" id="cart-img">
+                        <img src="./img/cart.jpeg" alt="cart-img" id="cart-img">
                     </a>
-                    
                 </div>
             </div>
-
-                
-                
-        
         </nav>
-   </header>
+    </header>
     <main>
         <div class="wrapper">
             <div id="homePage">
                 <div class="searchBox">
-                    <input type="text" name="" id="search" placeholder="Search By Name">
+                    <form>
+                          <input type="text" name="" id="search" placeholder="Търси по име">
+                     </form>
                 </div>
-
-                <div id="filter">  
-                </div>
-
                 <div id="results">
                 </div>
             </div>
@@ -51,27 +49,29 @@
                     <h1 id="">Нямате добавени продукти в количката</h1>
                 </div>
                 <div class="order-history">
-                    <h2>История на поръчките </h2>
-
+                    <h2>История на поръчките</h2>
                 </div>
-
-
             </div>
             <div id="deliveryPage">
                 <h2>Финализиране на поръчка </h2>
                 <form action="" id="form-delivery">
-                    <input type="text" name="name" id="name" placeholder="Име" required>
-                    <input type="number" name="phone" id="phone" placeholder="Телефон за връзка" required>
-                    <textarea form="form-delivery" name="address" id="address" placeholder="Адрес" required></textarea>
-                    <button type="submit" id="submit-order">submit</button>
+                    <input type="text" name="name" id="name" placeholder="Име" required maxlength="50">
+                    <input type="tel" name="phone" id="phone" placeholder="XXXX XXX XXX" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" title="Въведете номер за връзка" required>
+                    <textarea form="form-delivery" name="address" id="address" placeholder="Адрес" required maxlength="200"></textarea>
+                    <button type="submit" id="submit-order">Финализирай</button>
                 </form>
-                
-
+            </div>
+            <div id="orderCompletePage">
+                <div>
+                    <h1>Вашата поръчка е записана успешно.</h1>
+                </div>
+                <h2>Очаквайте доставка в рамките на 30 минути.</h2>
+            </div>
+            <div id="errorPage">
+                <h1> Error 404 - Page not found.</h1>
             </div>
         </div>
-
     </main>
-
     <script src="./model/Duner.js"></script>
     <script src="./model/MainManager.js"></script>
     <script src="./model/User.js"></script>
